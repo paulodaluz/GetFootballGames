@@ -14,7 +14,7 @@ const Fases = (props) => {
   const { route } = props;
   const { campeonatoId, faseId } = route.params;
 
-  const [fases, setFases] = useState([]);
+  const [jogos, setJogos] = useState([]);
   const [mensagem, setMensagem] = useState([]);
 
   const getChampionshipStages = () => {
@@ -28,7 +28,7 @@ const Fases = (props) => {
         }
       )
       .then((retorno) => {
-        setFases(retorno.data.fases);
+        setJogos(retorno.data.chaves);
       })
       .catch((erro) => {
         console.log(erro);
