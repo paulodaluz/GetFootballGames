@@ -21,22 +21,23 @@ const Fases = (props) => {
     axios
       .get(`https://api.api-futebol.com.br/v1/campeonatos/${campeonatoId}`, {
         headers: {
-          Authorization: `Bearer live_77d309636a6cb48a45b7d36746a68c`,
+          Authorization: `Bearer live_8521dc4093c0350144130ab7488d0e`,
         },
       })
       .then((retorno) => {
-        const fases = retorno.data.fases;
-        if (fases.length < 1) {
+        const allFases = retorno.data.fases;
+        if (allFases.length < 1) {
           setMensagem("Campeonado não Iniciado");
         } else {
           setMensagem("Fases já ocorridas: ");
           const fasesFinalizadas = [];
-          fases.map((fase) => {
+          allFases.map((fase) => {
             if (fase.status === "finalizado") {
               fasesFinalizadas.push(fase);
             }
           });
           setFases(fasesFinalizadas);
+          console.log("aaaaaaaaaaaaaaaaaaaaaaaa", fasesFinalizadas);
         }
       })
       .catch((erro) => {
@@ -54,7 +55,14 @@ const Fases = (props) => {
       <FlatList
         data={fases}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => console.log(item)}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.replace("Jogos", {
+                campeonatoId,
+                faseId: item.fase_id,
+              })
+            }
+          >
             <Text style={styles.item}>{item.nome}</Text>
           </TouchableOpacity>
         )}

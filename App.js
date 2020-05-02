@@ -7,6 +7,7 @@ import {
 import "react-native-gesture-handler";
 import Home from "./src/pages/Home";
 import Fases from "./src/pages/Fases";
+import Jogos from "./src/pages/Jogos";
 import { NavigationContainer } from "@react-navigation/native";
 
 export default function App() {
@@ -26,6 +27,14 @@ export default function App() {
           styles={styles.container}
           name="Fases"
           component={Fases}
+          options={{
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          styles={styles.container}
+          name="Jogos"
+          component={Jogos}
           options={{
             headerShown: true,
           }}

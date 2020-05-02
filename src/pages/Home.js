@@ -16,7 +16,7 @@ const Home = (props) => {
     axios
       .get("https://api.api-futebol.com.br/v1/campeonatos", {
         headers: {
-          Authorization: `Bearer live_77d309636a6cb48a45b7d36746a68c`,
+          Authorization: `Bearer live_8521dc4093c0350144130ab7488d0e`,
         },
       })
       .then((retorno) => {

@@ -23,12 +23,21 @@ const Fases = (props) => {
         `https://api.api-futebol.com.br/v1/campeonatos/${campeonatoId}/fases/${faseId}`,
         {
           headers: {
-            Authorization: `Bearer live_77d309636a6cb48a45b7d36746a68c`,
+            Authorization: `Bearer live_8521dc4093c0350144130ab7488d0e`,
           },
         }
       )
       .then((retorno) => {
-        setJogos(retorno.data.chaves);
+        const chaves = retorno.data.chaves;
+        const arrayChaves = [];
+
+        for (var chave in chaves) {
+          console.log("chave", chave, "chave");
+          arrayChaves.push(chaves[chave]);
+        }
+        console.log("arrayChaves", arrayChaves, "arrayChaves");
+        setJogos(arrayChaves);
+        console.log("PAULERA", jogos, "PAULERA");
       })
       .catch((erro) => {
         console.log(erro);
@@ -43,10 +52,10 @@ const Fases = (props) => {
     <View style={styles.container}>
       <Text> {mensagem} </Text>
       <FlatList
-        data={fases}
+        data={jogos}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => console.log(item)}>
-            <Text style={styles.item}>{item.nome}</Text>
+            <Text style={styles.item}>{item.ida[0].placar}</Text>
           </TouchableOpacity>
         )}
         keyExtractor={(item) => item.email}
