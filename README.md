@@ -48,7 +48,8 @@ A te  cnologia utilizada foi React Native.
 * babel-preset-expo versão 8.1.0
 
 ## Como instalar a aplicação
-Basta apenas baixar o projeto, abrir a pasta local dele no terminal e digitar o comando `yarn install`, que ele ira instalar todas as bibliotecas.
+- Haverá necessidade de rodar o comando `npm install expo-cli --global` para poder executar a aplicação.
+- Após isso, basta apenas baixar o projeto, abrir a pasta local dele no terminal e digitar o comando `yarn install`, que ele ira instalar todas as bibliotecas.
 
 ## Como rodar a aplicação localmente
 Para startar o projeto você pode digitar o comando `yarn start` no diretório do projeto.
