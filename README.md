@@ -1,4 +1,4 @@
-# Descrição do Projeto
+# GetFootballGames
 Este projeto foi desenvolvido com o intuito de atender aos requisitos de um trabalho da faculdade, condizente a matéria de Tópicos de Programação Mobile.
 
 ## Objetivo do Projeto
@@ -43,7 +43,7 @@ A te  cnologia utilizada foi React Native.
 * react-native-reanimated versão 1.8.0,
 * react-native-safe-area-context versão 0.7.3,
 * react-native-screens versão 2.7.0,
-* react-native-web versão 0.11.7
+* react-native-web versão 0.11.7,
 * @babel/core versão 7.8.6,
 * babel-preset-expo versão 8.1.0
 
