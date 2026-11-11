@@ -1,63 +1,134 @@
-# GetFootballGames
-Este projeto foi desenvolvido com o intuito de atender aos requisitos de um trabalho da faculdade, condizente a matéria de Tópicos de Programação Mobile.
+# Get Football Games
 
-## Objetivo do Projeto
-O objetivo do trabalho é criar um Aplicativo em React Native atendendo aos seguintes requisitos:
+Aplicativo acadêmico em React Native para consultar campeonatos, suas fases e os jogos retornados pela API Futebol. A atividade original utilizava dados da Copa do Brasil e do Brasileirão de 2020.
 
-A proposta desta Atividade Avaliativa é desenvolver um mini aplicativo que apresente o histórico de partidas da Copa do Brasil2020, até o momento.
-1) - Acesse a página https://www.api-futebol.com.br/ e faça um cadastro gratuito. Após validar o seu e-mail, acesse https://www.api-futebol.com.br/dashboard/e clique em API Keys. Devemos utilizar o token denominado "Live" para o correto funcionamento.
-   - Será avaliado somente usabilidade do aplicativo.
-   - Todas  as  requisições devem ser enviadas com um Header cabeçalho, denominado "Authorization" e  com o  valor "Bearer {aqui  vai  o  seu token}". Abaixo um exemplo de como enviar um Header com o Axios:
- ```
- axios
-      .get(
-        `https://api.api-futebol.com.br/v1/campeonatos/${campeonatoId}/fases/${faseId}`,
-        {
-          headers: {
-            Authorization: `Bearer live_8521dc4093c0350144130ab7488d0e`,
-          },
-        }
-      )
-  ```
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+[![License MIT](https://img.shields.io/badge/License-MIT-blue)](LICENSE)
 
-2) Para listar todos os campeonatos disponíveis API efetue um GET na URL: https://api.api-futebol.com.br/v1/campeonatos. A mesma retornará apenas a Copa do  Brasil  e  Brasileirão. Ambas as competições devem ser mostradas na tela do APP. Ao selecionar a Competição deve ser mostrado na tela as fases já ocorridas. Tal acesso se dá através da URL https://api.api-futebol.com.br/v1/campeonatos/2acessados o atributo Fases, que é uma lista.
+## 📋 Table of contents
 
-3) Como até o momento não tivemos partidas do Brasileirão, se clicarmos em Brasileirão 2020, o atributo Fases vai estar vazio, portanto, deve ser apresentado na tela mensagem, ‘Campeonado não Iniciado’.
+- [✨ Features](#features)
+- [🧪 Technologies](#technologies)
+- [🛠️ Environment setup](#environment-setup)
+- [🚀 Getting started](#getting-started)
+- [🗂️ Project structure](#project-structure)
+- [✅ Testing and quality](#testing-and-quality)
+- [🔎 Troubleshooting](#troubleshooting)
+- [🤝 Contributing](#contributing)
+- [📜 License](#license)
 
-4) Ao selecionar Copa do Brasil -> Fase XX, o APP deve trazer os Jogos realizados, os quais  devem ser acessados através da seguinteURL: https://api.api-futebol.com.br/v1/campeonatos/2/fases/55.
+<a id="features"></a>
 
+## ✨ Features
 
-## Tecnologias Utilizadas
-A te  cnologia utilizada foi React Native.
+- Listagem de campeonatos retornados por `/v1/campeonatos`.
+- Navegação para as fases do campeonato selecionado com `status` igual a `finalizado`.
+- Consulta dos jogos por campeonato e fase, exibindo o placar do primeiro jogo de ida de cada chave.
+- Mensagem quando o campeonato não apresenta fases.
 
-## Bibliotecas utilizadas
-* @react-native-community/masked-view versão 0.1.10,
-* @react-navigation/native versão 5.2.3,
-* @react-navigation/stack versão 5.2.18,
-* axios versão 0.19.2,
-* expo versão 37.0.3,
-* react versão 16.9.0,
-* react-dom versão 16.9.0,
-* react-native versão 37.0.1,
-* react-native-gesture-handler versão 1.6.1,
-* react-native-reanimated versão 1.8.0,
-* react-native-safe-area-context versão 0.7.3,
-* react-native-screens versão 2.7.0,
-* react-native-web versão 0.11.7,
-* @babel/core versão 7.8.6,
-* babel-preset-expo versão 8.1.0
+Os dados exibidos dependem da conta, do plano e das respostas atuais da API; o código não fixa um arquivo histórico offline de 2020.
 
-## Como instalar a aplicação
-- Haverá necessidade de rodar o comando `npm install expo-cli --global` para poder executar a aplicação.
-- Após isso, basta apenas baixar o projeto, abrir a pasta local dele no terminal e digitar o comando `yarn install`, que ele ira instalar todas as bibliotecas.
+<a id="technologies"></a>
 
-## Como rodar a aplicação localmente
-Para startar o projeto você pode digitar o comando `yarn start` no diretório do projeto.
+## 🧪 Technologies
 
-Após isso ele irá abrir uma aba no seu navegador padrão com um QRCode, basta apenas escanear com seu smartphone que você poderá acessar o App.
-Obs: 
-  - Você precisa estar na mesma rede em seu smartphone e computador que a inicializou o projeto.
-  - Você deve ter o Expo para rodar a aplicação.
+| Tecnologia | Versão declarada | Finalidade |
+| --- | --- | --- |
+| [Expo](https://docs.expo.dev/)  | ~37.0.3 | SDK mobile histórico |
+| [React](https://react.dev/)  | ~16.9.0 | Componentes |
+| [React Native](https://reactnative.dev/) | Arquivo `sdk-37.0.1.tar.gz` do fork Expo | Runtime nativo; não significa React Native 37.0.1 |
+| [React Navigation](https://reactnavigation.org/) | ^5.2.3 | Navegação |
+| [Axios](https://axios-http.com/) | ^0.19.2 | Cliente HTTP |
 
-## Desenvolvedor
-[Paulo Ricardo da Luz Júnior](https://www.linkedin.com/in/paulo-ricardo-da-luz-j%C3%BAnior-5a3953164/)
+As versões/faixas vêm do `package.json`. Node.js não está fixado; a tentativa de reprodução usa Node.js 14.21.3 e npm 6.14.18.
+
+<a id="environment-setup"></a>
+
+## 🛠️ Environment setup
+
+Requer Git, Node.js e npm. O projeto não fixa Node.js em `engines`, `.nvmrc` ou `.node-version`. **Node.js 14.21.3 com npm 6.14.18** foi escolhido para a reprodução da pilha histórica; não é uma versão declarada pelo repositório nem uma atualização de dependências.
+
+```bash
+nvm install 14.21.3
+nvm use 14.21.3
+git clone https://github.com/paulodaluz/GetFootballGames.git
+cd GetFootballGames
+npm install
+```
+
+Não há lockfile versionado: use `npm install`, não `npm ci`. Este guia adota npm, disponível com o Node.js, sem prometer uma resolução de dependências idêntica entre instalações. Não há Husky, hooks versionados ou script `prepare` para ativar.
+
+O SDK Expo 37 antecede a CLI local dos SDKs atuais. O manifesto não declara `expo-cli`; o executável `expo` fornecido pelo SDK é um wrapper que chama `expo-cli`. É necessário um ambiente legado já preparado com essa CLI. Não presuma que o Expo Go atual abre esse SDK. Instalação global de CLI, SDKs de emulador e atualização do projeto não fazem parte desta entrega.
+
+### API Futebol
+
+É necessário um acesso próprio à [API Futebol](https://www.api-futebol.com.br/). As chamadas de `src/pages/Home.js`, `Fases.js` e `Jogos.js` enviam `Authorization: Bearer TOKEN_DA_SUA_CONTA`. Os valores estão diretamente nesses arquivos; o projeto não lê tokens de `.env`. Revise a configuração antes de executar, sem reutilizar nem publicar credenciais versionadas.
+
+| Requisição externa | Uso |
+| --- | --- |
+| `GET https://api.api-futebol.com.br/v1/campeonatos` | Lista de campeonatos |
+| `GET https://api.api-futebol.com.br/v1/campeonatos/{id}` | Fases disponíveis |
+| `GET https://api.api-futebol.com.br/v1/campeonatos/{id}/fases/{faseId}` | Chaves e jogos |
+
+O aplicativo é cliente dessa API; não oferece um servidor HTTP próprio.
+
+<a id="getting-started"></a>
+
+## 🚀 Getting started
+
+Em um ambiente que já disponha da CLI e do cliente compatíveis com Expo SDK 37:
+
+```bash
+npm start
+```
+
+O comando chama `expo start`. Os scripts `npm run android`, `npm run ios` e `npm run web` acrescentam, respectivamente, `--android`, `--ios` e `--web`. Android/iOS dependem do dispositivo ou emulador preparado; o script web não comprova compatibilidade das dependências nativas. A URL/porta do servidor de desenvolvimento é apresentada pela CLI, sem porta fixa declarada no projeto.
+
+O script `npm run eject` altera a estrutura nativa; não é necessário para esta documentação e não foi executado.
+
+Validação com Node.js 14.21.3/npm 6.14.18: a instalação foi concluída após uma primeira tentativa interrompida por tempo limite. `npm start` chegou ao wrapper `expo`, que solicitou instalar `expo-cli` globalmente; a resposta foi `n`, mantendo o escopo autorizado. O comando encerrou com código 1. Não houve início do aplicativo, build nativo ou validação em dispositivo.
+
+<a id="project-structure"></a>
+
+## 🗂️ Project structure
+
+| Caminho | Responsabilidade |
+| --- | --- |
+| `App.js` | Navegação entre telas |
+| `src/pages/Home.js` | Consulta e seleção de campeonatos |
+| `src/pages/Fases.js` | Consulta e seleção das fases |
+| `src/pages/Jogos.js` | Leitura de chaves e placares |
+| `app.json`, `babel.config.js` | Configuração Expo e Babel |
+| `assets/` | Ícone e tela inicial |
+
+<a id="testing-and-quality"></a>
+
+## ✅ Testing and quality
+
+Não há scripts de testes automatizados, lint, formatação ou build de distribuição no manifesto. A instalação de dependências não equivale a compilar o app nem verificar seus fluxos. A execução em dispositivo, a compilação nativa e a captura de tela ficam para revisão posterior. As imagens foram omitidas nesta entrega mobile.
+
+<a id="troubleshooting"></a>
+
+## 🔎 Troubleshooting
+
+- `This command requires Expo CLI`: o wrapper `expo` não encontra `expo-cli` e oferece instalá-lo globalmente. Responda `n` se essa instalação não fizer parte do ambiente autorizado. A CLI não está declarada no manifesto. O bloqueio exige uma decisão posterior sobre o ambiente/atualização; nenhum CLI global foi instalado.
+- Sem lockfile, as faixas podem resolver dependências transitivas incompatíveis com o SDK antigo.
+- As credenciais da API ficam diretamente nos três componentes; configurar um `.env` não muda as chamadas.
+- `Jogos.js` espera `chaves` e acessa `item.ida[0].placar`; respostas de fases com outro formato precisam de tratamento de código.
+- Respostas, permissões do plano e jogos não foram verificados contra a API externa.
+
+<a id="contributing"></a>
+
+## 🤝 Contributing
+
+Crie uma branch a partir de `master`, mantenha as instruções compatíveis com os arquivos do projeto e descreva a alteração em um pull request. Execute as verificações aplicáveis descritas acima; registre limitações de serviços externos e ambiente. Não inclua credenciais, dados pessoais, `node_modules` ou arquivos gerados na entrega.
+
+<a id="license"></a>
+
+## 📜 License
+
+Este projeto está sob a licença **MIT**. Consulte [LICENSE](LICENSE); os avisos existentes foram preservados.
+
+---
+
+<p align="center">Made with 💜 by <a href="https://github.com/paulodaluz">Paulo da Luz</a></p>
